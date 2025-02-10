@@ -12,19 +12,19 @@ public class Schedule extends BaseEntity {
     private Long id;
 
     @Column(nullable = false)
-    private String userName;
-
-    @Column(nullable = false)
     private String title;
 
-    @Column(nullable = false)
+    @Column(columnDefinition = "longtext")
     private String contents;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
     public Schedule() {
     }
 
-    public Schedule(String userName, String title, String contents) {
-        this.userName = userName;
+    public Schedule(String title, String contents) {
         this.title = title;
         this.contents = contents;
     }
