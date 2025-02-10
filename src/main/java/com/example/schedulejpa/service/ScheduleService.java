@@ -17,7 +17,7 @@ public class ScheduleService {
     public ScheduleResponseDto save (String userName, String title, String contents) {
         Schedule schedule = new Schedule(userName, title, contents);
         scheduleRepository.save(schedule);
-        return new ScheduleResponseDto(schedule.getId(), schedule.getUserName(), schedule.getTitle(), schedule.getContents());
+        return new ScheduleResponseDto(schedule.getId(), schedule.getUserName(), schedule.getTitle(), schedule.getContents(), schedule.getCreatedAt(), schedule.getUpdatedAt());
     }
 
     public List<ScheduleResponseDto> findAll() {
@@ -29,6 +29,6 @@ public class ScheduleService {
 
     public ScheduleResponseDto findById(Long id) {
         Schedule findSchedule = scheduleRepository.findByIdOrElseThrow(id);
-        return new ScheduleResponseDto(findSchedule.getId(), findSchedule.getUserName(), findSchedule.getTitle(), findSchedule.getContents());
+        return new ScheduleResponseDto(findSchedule.getId(), findSchedule.getUserName(), findSchedule.getTitle(), findSchedule.getContents(), findSchedule.getCreatedAt(), findSchedule.getUpdatedAt());
     }
 }
