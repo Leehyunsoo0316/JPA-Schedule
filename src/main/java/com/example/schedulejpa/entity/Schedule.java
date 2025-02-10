@@ -28,4 +28,8 @@ public class Schedule extends BaseEntity {
         this.title = title;
         this.contents = contents;
     }
+
+    public void updateContents(String contents) {
+        this.contents = contents;
+    }
 }
