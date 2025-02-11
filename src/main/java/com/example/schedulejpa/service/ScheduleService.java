@@ -36,9 +36,9 @@ public class ScheduleService {
     }
 
     @Transactional
-    public void updateContents(Long id, String title) {
+    public void updateContents(Long id, String contents) {
         Schedule findSchedule = scheduleRepository.findByIdOrElseThrow(id);
-        findSchedule.updateContents(title);
+        findSchedule.updateContents(contents);
     }
 
     @Transactional

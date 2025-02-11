@@ -1,5 +1,6 @@
 package com.example.schedulejpa.controller;
 
+import com.example.schedulejpa.dto.UpdateUserRequestDto;
 import com.example.schedulejpa.dto.UserRequestDto;
 import com.example.schedulejpa.dto.UserResponseDto;
 import com.example.schedulejpa.service.UserService;
@@ -35,5 +36,11 @@ public class UserController {
     public ResponseEntity<UserResponseDto> findById(@PathVariable Long id) {
         UserResponseDto userResponseDto = userService.findById(id);
         return new ResponseEntity<>(userResponseDto, HttpStatus.OK);
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<UserResponseDto> updateUser(@PathVariable Long id, @RequestBody UpdateUserRequestDto dto) {
+        userService.updateUser(id, dto.getOldPassword(), dto.getName(), dto.getEmail(), dto.getNewPassword());
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
