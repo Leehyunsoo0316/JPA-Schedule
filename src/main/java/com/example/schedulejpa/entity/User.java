@@ -1,6 +1,7 @@
 package com.example.schedulejpa.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import lombok.Getter;
 
 @Getter
@@ -12,7 +13,7 @@ public class User extends BaseEntity{
     private Long id;
     @Column(nullable = false)
     private String name;
-    @Column(nullable = false)
+    @Email
     private String email;
     @Column(nullable = false)
     private String password;
