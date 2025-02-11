@@ -1,5 +1,6 @@
 package com.example.schedulejpa.controller;
 
+import com.example.schedulejpa.dto.DeleteUserRequestDto;
 import com.example.schedulejpa.dto.UpdateUserRequestDto;
 import com.example.schedulejpa.dto.UserRequestDto;
 import com.example.schedulejpa.dto.UserResponseDto;
@@ -41,6 +42,12 @@ public class UserController {
     @PatchMapping("/{id}")
     public ResponseEntity<UserResponseDto> updateUser(@PathVariable Long id, @RequestBody UpdateUserRequestDto dto) {
         userService.updateUser(id, dto.getOldPassword(), dto.getName(), dto.getEmail(), dto.getNewPassword());
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteUser(@PathVariable Long id, @RequestBody DeleteUserRequestDto dto) {
+        userService.deleteUser(id, dto.getPassword());
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }

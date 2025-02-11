@@ -45,4 +45,12 @@ public class UserService {
         }
         findUser.updateUser(name, email, newPassword);
     }
+
+    public void deleteUser(Long id, String password) {
+        User findUser = userRepository.findByIdOrElseThrow(id);
+        if (!findUser.getPassword().equals(password)) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "비밀번호가 일치하지 않습니다.");
+        }
+        userRepository.delete(findUser);
+    }
 }
