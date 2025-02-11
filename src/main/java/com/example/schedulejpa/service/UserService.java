@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class UserService {
@@ -17,5 +19,12 @@ public class UserService {
         User user = new User(name, email, password);
         userRepository.save(user);
         return new UserResponseDto(user.getId(), user.getName(), user.getEmail(), user.getCreatedAt(), user.getUpdatedAt());
+    }
+
+    public List<UserResponseDto> findAll() {
+        return userRepository.findAll()
+                .stream()
+                .map(UserResponseDto::toDto)
+                .toList();
     }
 }

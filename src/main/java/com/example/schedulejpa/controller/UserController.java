@@ -8,10 +8,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/user")
@@ -24,5 +23,11 @@ public class UserController {
     public ResponseEntity<UserResponseDto> save(@Valid @RequestBody UserRequestDto dto) {
         UserResponseDto userResponseDto = userService.save(dto.getName(), dto.getEmail(), dto.getPassword());
         return new ResponseEntity<>(userResponseDto, HttpStatus.OK);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<UserResponseDto>> findAll() {
+        List<UserResponseDto> userResponseDtoList = userService.findAll();
+        return new ResponseEntity<>(userResponseDtoList, HttpStatus.OK);
     }
 }

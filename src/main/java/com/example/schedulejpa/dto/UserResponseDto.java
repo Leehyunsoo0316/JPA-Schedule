@@ -1,5 +1,6 @@
 package com.example.schedulejpa.dto;
 
+import com.example.schedulejpa.entity.User;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
@@ -18,5 +19,9 @@ public class UserResponseDto {
         this.email = email;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
+    }
+
+    public static UserResponseDto toDto(User user) {
+        return new UserResponseDto(user.getId(), user.getName(), user.getEmail(), user.getCreatedAt(), user.getUpdatedAt());
     }
 }
