@@ -30,4 +30,10 @@ public class UserController {
         List<UserResponseDto> userResponseDtoList = userService.findAll();
         return new ResponseEntity<>(userResponseDtoList, HttpStatus.OK);
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<UserResponseDto> findById(@PathVariable Long id) {
+        UserResponseDto userResponseDto = userService.findById(id);
+        return new ResponseEntity<>(userResponseDto, HttpStatus.OK);
+    }
 }
