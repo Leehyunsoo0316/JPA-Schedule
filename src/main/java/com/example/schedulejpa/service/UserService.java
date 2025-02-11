@@ -46,6 +46,7 @@ public class UserService {
         findUser.updateUser(name, email, newPassword);
     }
 
+    @Transactional
     public void deleteUser(Long id, String password) {
         User findUser = userRepository.findByIdOrElseThrow(id);
         if (!findUser.getPassword().equals(password)) {
